@@ -6,7 +6,11 @@ namespace Biblioteket
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello world!");
+            Bibliotek nytObj = new Bibliotek("Sønderborg bibliotek");
+
+            Console.WriteLine(nytObj.HentBibliotek());
+
+            Console.ReadLine();
         }
     }
 }
