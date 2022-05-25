@@ -6,11 +6,17 @@ namespace Biblioteket
     {
         static void Main(string[] args)
         {
-            Bibliotek nytObj = new Bibliotek("Sønderborg bibliotek");
+            Bibliotek bibliotek = new Bibliotek("Sønderborg bibliotek");
 
-            nytObj.OpretLaaner(1, "Emma", "Niclasen");
-            Console.WriteLine(nytObj.HentBibliotek());
-            Console.WriteLine(nytObj.HentLaaner());
+           
+            Console.WriteLine(bibliotek.HentBibliotek());
+
+            Console.WriteLine(bibliotek.OpretLaaner(1, "Emma", "Niclasen"));
+            Console.WriteLine(bibliotek.OpretLaaner(2, "Andrias", "Joensen"));
+            Console.WriteLine(bibliotek.OpretLaaner(3, "Knút", "Joensen"));
+
+            Console.WriteLine("Her er en oversigt over registrerede lånere: ");
+            Console.WriteLine(bibliotek.HentAlleLaanere());
 
             Console.ReadLine();
         }

@@ -8,9 +8,9 @@ namespace Biblioteket
 {
     public class Bibliotek
     {
-
         private Laaner _laaner;
         private string _biblioteksNavn;
+        private List<Laaner> laanere = new List<Laaner>();
 
         public Bibliotek(string biblioteksNavn)
         {
@@ -23,16 +23,28 @@ namespace Biblioteket
             return string.Format("Velkommen til {0} - Datoen i dag er: {1}", _biblioteksNavn, DateTime.Now);
         }
 
-        public Laaner OpretLaaner(int laanerNummer, string fornavn, string efternavn)
+        public string OpretLaaner(int laanerNummer, string fornavn, string efternavn)
         {
             _laaner = new Laaner(laanerNummer, fornavn, efternavn);
-            return _laaner;
-                         
+            laanere.Add(_laaner);
+            return string.Format("Bruger oprettet:\nNavn: {0}\nLånernummer: {1}\n\n", fornavn + " " + efternavn, laanerNummer);
         }
 
         public string HentLaaner()
         {
-            return string.Format("Lånernummer: {0} \nNavn: {1} \nEr låner hos: {2}", _laaner.LaanerNummer, _laaner.FuldeNavn, _biblioteksNavn);
+            return string.Format("\n\nLånernummer: {0} \nNavn: {1} \nEr låner hos: {2}", _laaner.LaanerNummer, _laaner.FuldeNavn, _biblioteksNavn);
+        }
+
+        public string HentAlleLaanere()
+        {
+            string result = "";
+
+            foreach(Laaner l in laanere)
+            {
+                result += string.Format("Navn: {0} {1} - Lånernummer: {2}\n", l.Fornavn, l.Efternavn, l.LaanerNummer);
+            }
+
+            return result;
         }
 
 
