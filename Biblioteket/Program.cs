@@ -9,6 +9,7 @@ namespace Biblioteket
             Bibliotek nytObj = new Bibliotek("Sønderborg bibliotek");
 
             nytObj.OpretLaaner(1, "Emma", "Niclasen");
+            Console.WriteLine(nytObj.HentBibliotek());
             Console.WriteLine(nytObj.HentLaaner());
 
             Console.ReadLine();

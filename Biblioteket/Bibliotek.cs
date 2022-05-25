@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteket
 {
-    class Bibliotek
+    public class Bibliotek
     {
 
         private Laaner _laaner;
@@ -25,8 +25,8 @@ namespace Biblioteket
 
         public Laaner OpretLaaner(int laanerNummer, string fornavn, string efternavn)
         {
-            
-            return new Laaner(laanerNummer, fornavn, efternavn);
+            _laaner = new Laaner(laanerNummer, fornavn, efternavn);
+            return _laaner;
                          
         }
 
