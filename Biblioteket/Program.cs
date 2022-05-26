@@ -8,17 +8,13 @@ namespace Biblioteket
         {
             Bibliotek bibliotek = new Bibliotek("Sønderborg bibliotek");
 
+            bool showMenu = true;
+            while (showMenu)
+            {
+                showMenu = bibliotek.MainMenu();
+            }
+                 
            
-            Console.WriteLine(bibliotek.HentBibliotek());
-
-            Console.WriteLine(bibliotek.OpretLaaner(1, "Emma", "Niclasen"));
-            Console.WriteLine(bibliotek.OpretLaaner(2, "Andrias", "Joensen"));
-            Console.WriteLine(bibliotek.OpretLaaner(3, "Knút", "Joensen"));
-
-            Console.WriteLine("Her er en oversigt over registrerede lånere: ");
-            Console.WriteLine(bibliotek.HentAlleLaanere());
-
-            Console.ReadLine();
         }
     }
 }
