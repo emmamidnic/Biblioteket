@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +10,11 @@ namespace Biblioteket
     public class Bibliotek
     {
         private string _biblioteksNavn;
-        private List<Laaner> laanere = new List<Laaner>();
-             
+        private List<Laaner> laanere = new List<Laaner>(); // liste, hvor alle oprettede lånere bliver lagt til
+        private static string path;
 
-        public Bibliotek(string biblioteksNavn)
+
+        public Bibliotek(string biblioteksNavn) 
         {
             _biblioteksNavn = biblioteksNavn;
         }
@@ -29,29 +31,29 @@ namespace Biblioteket
             Console.WriteLine("3) Udskriv alle lånere");
             Console.WriteLine("4) Find og udskriv en låner via lånernummer");
             Console.WriteLine("5) Afslut");
-            Console.Write("\n\nIndtast dit valg (1,2,3 eller 4):  ");
+            Console.Write("\n\nIndtast dit valg (1,2,3,4 eller 5):  ");
 
             switch (Console.ReadLine())
             {
                 case "1":
                     Console.Clear();
-                    Console.WriteLine(HentBibliotekTEST());
+                    Console.WriteLine(HentBibliotek());
                     Console.ReadLine();
                     return true;
                 case "2":
                     Console.Clear();
-                    Console.WriteLine(OpretLaanerTEST());
+                    Console.WriteLine(OpretLaaner());
                     Console.ReadLine();
                     return true;
                 case "3":
                     Console.Clear();
                     Console.WriteLine("Her er listen over alle registrerede lånere: \n");
-                    Console.WriteLine(HentAlleLaanereTEST());
+                    Console.WriteLine(HentAlleLaanere());
                     Console.ReadLine();
                     return true;
                 case "4":
                     Console.Clear();
-                    Console.WriteLine("Indtast lånernummer: ");
+                    Console.Write("Indtast lånernummer: ");
                     int laanerNummer = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine(FindLaaner(laanerNummer)); 
                     Console.ReadLine();
@@ -63,7 +65,7 @@ namespace Biblioteket
             }
         }
 
-        private static string HentBibliotekTEST()
+        private static string HentBibliotek()
         {
             string navnBibliotek = "Sønderborg Bibliotek";
             return string.Format("Velkommen til {0} - Datoen i dag er: {1}", navnBibliotek, DateTime.Now);
@@ -71,7 +73,7 @@ namespace Biblioteket
              
 
 
-        public string OpretLaanerTEST()
+        public string OpretLaaner()
         {
             Console.Write("Indtast dit navn: ");
             string navn =  Console.ReadLine();
@@ -79,17 +81,18 @@ namespace Biblioteket
             Console.Write("Indtast din email: ");
             string email = Console.ReadLine();
 
-            Random rnd = new Random();
+            Random rnd = new Random(); //Klasse som giver random nr. til oprettede lånere 
             int laanerNummer = rnd.Next();
                         
             laanere.Add(new Laaner(laanerNummer, navn, email));
+            LaanerTXT();
             return string.Format("\n\nBruger oprettet:\nNavn: {0}\nLånernummer: {1}\nEmail: {2}\n\n", navn, laanerNummer, email); 
                            
         }
 
-        public string HentAlleLaanereTEST() 
+        public string HentAlleLaanere() 
         {
-            string result = "";
+            string result = ""; 
 
             foreach (Laaner l in laanere)
             {
@@ -99,7 +102,8 @@ namespace Biblioteket
             return result;
         }
 
-        public string FindLaaner(int laanerNummer)
+        // metode, som checker om det indtastede laanerNummer matcher med et låner nummer hos et lånerobjekt i listen
+        public string FindLaaner(int laanerNummer) 
         {
 
             foreach  (Laaner l in laanere)
@@ -108,10 +112,37 @@ namespace Biblioteket
                 {
                     return l.ToString();
                 }
+
+                if (laanerNummer != l.LaanerNummer)
+                {
+                    return string.Format ("Der findes ingen bruger med det lånernummer!");
+                }
             }
             return "";
         }
 
+
+        public void LaanerTXT()
+        {
+            foreach (Laaner l in laanere)
+            {
+                DateTime localDate = DateTime.Now;
+
+                path = $"C:\\Users\\fo2931\\Desktop\\BIBLIOTEKET\\{l.LaanerNummer}.txt";
+
+                string datoOgTid = $"Dato: {localDate}\n";
+
+
+                string laanertxt = $"\n{l.ToString()}";
+
+                File.WriteAllText(path, datoOgTid);
+                File.AppendAllText(path, laanertxt);
+
+            }
+
+        }
+
+        // TODO: En metode, som kan gemme alle lånte bøger i en liste på personen
 
     }
 }

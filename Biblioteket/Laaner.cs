@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteket
 {
-    public class Laaner : Person
+    public class Laaner : Person // nedarver fra Person klassen
     {
         private int _laanerNummer;
        
@@ -23,7 +23,7 @@ namespace Biblioteket
         }
 
 
-        public override string ToString()
+        public override string ToString() // laver objektet til string
         {
             return string.Format("Denne bruger er: {0}", Navn);
         }

@@ -8,8 +8,9 @@ namespace Biblioteket
 {
     public class Person 
     {
-        private string navn;
+        private string navn; // field
         private string email;
+        List<Bog> Bog  = new List<Bog>(); // Liste som skal bruges til LaanBog(Bog bogen) metoden
 
         public string Navn   // property
         {
@@ -18,10 +19,10 @@ namespace Biblioteket
 
         }
 
-        public string Email   // property
+        public string Email   
         {
-            get { return email; }   // get method
-            set { email = value; }  // set method
+            get { return email; }   
+            set { email = value; }  
 
         }
 
