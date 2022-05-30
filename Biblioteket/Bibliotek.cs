@@ -72,7 +72,6 @@ namespace Biblioteket
         }
              
 
-
         public string OpretLaaner()
         {
             Console.Write("Indtast dit navn: ");
