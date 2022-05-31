@@ -121,12 +121,13 @@ namespace Biblioteket
 
                 path = $"C:\\Users\\fo2931\\Desktop\\BIBLIOTEKET\\{l.LaanerNummer}.txt";
 
+                string txt = $"Denne bruger blev oprettet: {localDate}\n";
                 string datoOgTid = $"Dato: {localDate}\n";
 
 
-                string laanertxt = $"\n{l.ToString()}";
+                string laanertxt = $"\n{l.ToString()} - Email: {l.Email} - Lånernummer: {l.LaanerNummer}";
 
-                File.WriteAllText(path, datoOgTid);
+                File.WriteAllText(path, txt);
                 File.AppendAllText(path, laanertxt);
 
             }
