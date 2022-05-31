@@ -8,7 +8,7 @@ namespace Biblioteket
         {
             Bibliotek bibliotek = new Bibliotek("Sønderborg bibliotek");
             
-            // så længe showMenu er true, kører programmet. I MainMenu(); bliver showMenu til false, hvis user vælger at aflsutte programmet.
+            // så længe showMenu er true, kører programmet.
             bool showMenu = true; 
             while (showMenu)
             {

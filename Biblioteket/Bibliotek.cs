@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Biblioteket
 {
@@ -14,16 +11,16 @@ namespace Biblioteket
         private static string path;
 
 
-        public Bibliotek(string biblioteksNavn) 
+        public Bibliotek(string biblioteksNavn)
         {
             _biblioteksNavn = biblioteksNavn;
         }
 
-        
+
 
         public bool MainMenu()
         {
-            
+
             Console.Clear();
             Console.WriteLine("Du kan vælge imellem følgende:");
             Console.WriteLine("1) Vis bibliotekets navn og dato");
@@ -55,7 +52,7 @@ namespace Biblioteket
                     Console.Clear();
                     Console.Write("Indtast lånernummer: ");
                     int laanerNummer = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine(FindLaaner(laanerNummer)); 
+                    Console.WriteLine(FindLaaner(laanerNummer));
                     Console.ReadLine();
                     return true;
                 case "5":
@@ -70,28 +67,28 @@ namespace Biblioteket
             string navnBibliotek = "Sønderborg Bibliotek";
             return string.Format("Velkommen til {0} - Datoen i dag er: {1}", navnBibliotek, DateTime.Now);
         }
-             
+
 
         public string OpretLaaner()
         {
             Console.Write("Indtast dit navn: ");
-            string navn =  Console.ReadLine();
+            string navn = Console.ReadLine();
 
             Console.Write("Indtast din email: ");
             string email = Console.ReadLine();
 
             Random rnd = new Random(); //Klasse som giver random nr. til oprettede lånere 
             int laanerNummer = rnd.Next();
-                        
+
             laanere.Add(new Laaner(laanerNummer, navn, email));
             LaanerTXT();
-            return string.Format("\n\nBruger oprettet:\nNavn: {0}\nLånernummer: {1}\nEmail: {2}\n\n", navn, laanerNummer, email); 
-                           
+            return string.Format("\n\nBruger oprettet:\nNavn: {0}\nLånernummer: {1}\nEmail: {2}\n\n", navn, laanerNummer, email);
+
         }
 
-        public string HentAlleLaanere() 
+        public string HentAlleLaanere()
         {
-            string result = ""; 
+            string result = "";
 
             foreach (Laaner l in laanere)
             {
@@ -102,22 +99,17 @@ namespace Biblioteket
         }
 
         // metode, som checker om det indtastede laanerNummer matcher med et låner nummer hos et lånerobjekt i listen
-        public string FindLaaner(int laanerNummer) 
+        public string FindLaaner(int laanerNummer)
         {
-
-            foreach  (Laaner l in laanere)
+            foreach (Laaner l in laanere)
             {
                 if (laanerNummer == l.LaanerNummer)
                 {
                     return l.ToString();
                 }
-
-                if (laanerNummer != l.LaanerNummer)
-                {
-                    return string.Format ("Der findes ingen bruger med det lånernummer!");
-                }
             }
-            return "";
+
+            return string.Format("\n\nDer findes ingen bruger med det lånernummer!");
         }
 
 

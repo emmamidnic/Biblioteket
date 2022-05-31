@@ -93,5 +93,3 @@ Known Issues
 
 
 
-Bugreporting
---------
